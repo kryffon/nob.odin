@@ -47,6 +47,19 @@ import "core:strings"
 import "core:sys/posix"
 import "core:time"
 
+g_start_time: time.Tick
+
+@(init)
+init_nob :: proc "contextless" () {
+	g_start_time = time.tick_now()
+}
+
+@(fini)
+fini_nob :: proc "contextless" () {
+	context = runtime.default_context()
+	fmt.printfln("\n[nob.odin finished in %v]", time.tick_since(g_start_time))
+}
+
 @(private)
 build :: proc(cmd: ..string) {
 	exec_command(.Build, ..cmd)

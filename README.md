@@ -45,12 +45,12 @@ Very much inspired by [tsoding/nob.h](https://github.com/tsoding/nob.h) and jai'
 
 - For parallel execution, enclose commands between `start_parallel()` and `end_parallel()`
   ```odin
-	start_parallel()
+  start_parallel()
   for in_path in shader_files {
       out_path := fmt.tprintf("%s.spv", in_path)
       build("glslc", in_path, "-o", out_path)
   }
-	end_parallel()
+  end_parallel()
   ```
 
 - Use fork variants for each command to run programs that use alt-mode in terminal.
